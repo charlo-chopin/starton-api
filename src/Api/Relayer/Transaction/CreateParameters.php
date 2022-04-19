@@ -21,7 +21,6 @@ class CreateParameters
 
     public function __construct(
         string $network,
-        string $signerWallet,
         string $from,
         string $to
     ) {
@@ -29,7 +28,6 @@ class CreateParameters
         $this->from         = $from;
         $this->to           = $to;
         $this->network      = $network;
-        $this->signerWallet = $signerWallet;
     }
 
     public function getAll(): array

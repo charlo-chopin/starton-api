@@ -55,11 +55,11 @@ class TransactionTest extends TestCase
         $value                      = "777";
         $createParameters           = new CreateParameters(
             Network::BINANCE_TESTNET,
-            null,
             $_ENV['WALLET_ADDRESS'],
             $_ENV['SMART_CONTRACT_ADDRESS']
         );
         $createParameters->value    = $value;
+        $createParameters->signerWallet = "0x2325932da7308189795875b39a712AF37EbFCC13";
         $transaction                = $this
             ->startonConnect
             ->relayer
