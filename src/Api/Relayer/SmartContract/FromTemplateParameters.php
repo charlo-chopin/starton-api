@@ -10,6 +10,7 @@ class FromTemplateParameters
     public string $network;
     public string $signerWallet;
     public string $templateId;
+    public array $params = [];
     public CustomGas|null $customGaz    = null;
     public string|null $name            = null;
     public string|null $description     = null;
@@ -31,22 +32,13 @@ class FromTemplateParameters
         }
     }
 
-    #[Pure] #[ArrayShape([
-        'network' => "string",
-        'name' => "null|string",
-        'description' => "null|string",
-        'signerWaller' => "string",
-        'templateId' => "string",
-        'gasLimit' => "string",
-        'speed' => "string",
-        'customGaz' => "array"
-    ])]
     public function getAll(): array
     {
         return [
             'network'           => $this->network,
             'name'              => $this->name,
             'description'       => $this->description,
+            'params'            => $this->params,
             'signerWaller'      => $this->signerWallet,
             'templateId'        => $this->templateId,
             'gasLimit'          => $this->gasLimit,
