@@ -59,7 +59,7 @@ class TransactionTest extends TestCase
             $_ENV['SMART_CONTRACT_ADDRESS']
         );
         $createParameters->value    = $value;
-        $createParameters->signerWallet = "0x2325932da7308189795875b39a712AF37EbFCC13";
+        $createParameters->signerWallet = $_ENV['WALLET_ADDRESS'];
         $transaction                = $this
             ->startonConnect
             ->relayer

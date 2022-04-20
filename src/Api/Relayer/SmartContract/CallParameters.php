@@ -20,6 +20,7 @@ class CallParameters
         $this->functionName = $functionName;
         $this->params       = $params;
         $this->speed        = 'low';
+        $this->value        = '0';
     }
 
     public function getAll(): array

@@ -40,7 +40,7 @@ class SmartContractTest extends TestCase
      * @return void
      * @throws Exception
      */
-    public function canInteractWithSmartContract()
+    public function canInteractWithSmartContractRead()
     {
         $smartContractParameters    = new CallParameters(SmartContractFunction::TOTAL_SUPPLY);
         $network                    = Network::BINANCE_TESTNET;
@@ -50,6 +50,33 @@ class SmartContractTest extends TestCase
             $network,
             $address,
             $smartContractParameters
+        );
+
+        $this->assertEquals(HttpStatusCodeHelper::CREATED, $response->getStatusCode());
+    }
+
+    /**
+     * @test
+     * @return void
+     * @throws Exception
+     */
+    public function canInteractWithSmartContractCall()
+    {
+        $smartContractParameters    = new CallParameters(SmartContractFunction::TRANSFER);
+        $network                    = Network::BINANCE_TESTNET;
+        $amount                     = (string)(1 * pow(10, 18));
+
+        $smartContractParameters->signerWallet = $_ENV['WALLET_ADDRESS'];
+        $smartContractParameters->params = [
+            $_ENV['WALLET_ADDRESS_EXTERNAL'],
+            $amount,
+        ];
+
+        $response = $this->startonConnect->relayer->smartContractInteract(
+            $network,
+            $_ENV['SMART_CONTRACT_ADDRESS'],
+            $smartContractParameters,
+            false
         );
 
         $this->assertEquals(HttpStatusCodeHelper::CREATED, $response->getStatusCode());

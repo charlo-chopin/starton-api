@@ -28,6 +28,7 @@ class CreateParameters
         $this->from         = $from;
         $this->to           = $to;
         $this->network      = $network;
+        $this->value        = '0';
     }
 
     public function getAll(): array
