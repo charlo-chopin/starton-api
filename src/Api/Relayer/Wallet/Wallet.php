@@ -90,6 +90,10 @@ class Wallet
      */
     public function getMetadata(): string
     {
+        if (null === $this->metadata) {
+            return "";
+        }
+
         return $this->metadata;
     }
 
