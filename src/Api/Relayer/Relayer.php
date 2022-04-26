@@ -212,12 +212,15 @@ class Relayer
 
     /**
      * @param string $address
+     * @param bool $deleteOnKms
      * @return bool
      * @throws Exception
      */
-    public function deleteWalletAccess(string $address): bool
+    public function deleteWalletAccess(string $address, bool $deleteOnKms): bool
     {
-        $response = $this->httpClient->delete("wallet/$address");
+        $response = $this->httpClient->delete("wallet/$address", [
+            'deleteOnKms' => $deleteOnKms
+        ]);
 
         return $response->getStatusCode() === HttpStatusCodeHelper::OK;
     }

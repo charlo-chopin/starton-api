@@ -81,11 +81,12 @@ class HttpClient
 
     /**
      * @param string $uri
+     * @param array $data
      * @return ResponseInterface
      * @throws Exception
      */
-    public function delete(string $uri): ResponseInterface
+    public function delete(string $uri, array $data = []): ResponseInterface
     {
-        return $this->http('DELETE', $uri);
+        return $this->http('DELETE', $uri, $data);
     }
 }

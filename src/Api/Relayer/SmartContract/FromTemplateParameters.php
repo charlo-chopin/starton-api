@@ -39,7 +39,7 @@ class FromTemplateParameters
             'name'              => $this->name,
             'description'       => $this->description,
             'params'            => $this->params,
-            'signerWaller'      => $this->signerWallet,
+            'signerWallet'      => $this->signerWallet,
             'templateId'        => $this->templateId,
             'gasLimit'          => $this->gasLimit,
             'speed'             => $this->speed,
