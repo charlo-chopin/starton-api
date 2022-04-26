@@ -219,7 +219,7 @@ class Relayer
     public function deleteWalletAccess(string $address, bool $deleteOnKms): bool
     {
         $response = $this->httpClient->delete("wallet/$address", [
-            'deleteOnKms' => $deleteOnKms
+            'deleteKms' => $deleteOnKms
         ]);
 
         return $response->getStatusCode() === HttpStatusCodeHelper::OK;
