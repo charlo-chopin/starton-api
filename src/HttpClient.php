@@ -42,12 +42,21 @@ class HttpClient
      * @param string $method
      * @param string $uri
      * @param array $data
+     * @param array $queries
      * @return ResponseInterface
      * @throws Exception
      */
-    private function http(string $method, string $uri, array $data = []): ResponseInterface
-    {
-        $options = array_merge(['headers' => $this->headers()], ['json' => $data]);
+    private function http(
+        string $method,
+        string $uri,
+        array $data = [],
+        array $queries = []
+    ): ResponseInterface{
+        $options = [
+            'headers'  => $this->headers(),
+            'json'     => $data,
+            'query'    => $queries
+        ];
 
         try {
             $response = $this->client->request($method, "/v2/$uri", $options);
@@ -81,12 +90,12 @@ class HttpClient
 
     /**
      * @param string $uri
-     * @param array $data
+     * @param array $queries
      * @return ResponseInterface
      * @throws Exception
      */
-    public function delete(string $uri, array $data = []): ResponseInterface
+    public function delete(string $uri, array $queries = []): ResponseInterface
     {
-        return $this->http('DELETE', $uri, $data);
+        return $this->http('DELETE', $uri, [], $queries);
     }
 }
