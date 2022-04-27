@@ -142,7 +142,7 @@ class Relayer
     public function createSmartContractFromTemplate(
         FromTemplateParameters $parameters
     ): SmartContract {
-        $response = $this->httpClient->post('smart-contract/from-template', $parameters->getAll());
+        $response = $this->httpClient->post('smart-contract/from-template', $parameters->getAll(true));
 
         return $this->deserializeSmartContract(
             $this->serializer,

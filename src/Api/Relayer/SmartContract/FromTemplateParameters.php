@@ -32,18 +32,34 @@ class FromTemplateParameters
         }
     }
 
-    public function getAll(): array
+    /**
+     * @param bool $initializedOnly
+     * @return array
+     */
+    public function getAll(bool $initializedOnly = false): array
     {
-        return [
+        $data = [
             'network'           => $this->network,
             'name'              => $this->name,
             'description'       => $this->description,
             'params'            => $this->params,
             'signerWallet'      => $this->signerWallet,
             'templateId'        => $this->templateId,
-            'gasLimit'          => $this->gasLimit,
             'speed'             => $this->speed,
-            'customGaz'         => $this->customGaz?->getAll(),
         ];
+
+        if ($initializedOnly) {
+            if ($this->gasLimit) {
+                $data['gasLimit'] = $this->gasLimit;
+            }
+            if ($this->customGaz) {
+                $data['customGaz'] = $this->customGaz?->getAll();
+            }
+        } else {
+            $data['gasLimit'] = $this->gasLimit;
+            $data['customGaz'] = $this->customGaz?->getAll();
+        }
+
+        return $data;
     }
 }
